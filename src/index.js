@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { Provider } from 'react-redux';
+import store from './store';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -12,15 +14,17 @@ import Home from './components/Home';
 
 
 const routing = (
-    <Router>
-        <div>
-            <Route exact path='/' component={App} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/home" component={Home} />
+    <Provider store={store}>
+        <Router>
+            <div>
+                <Route exact path='/' component={App} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                <Route path="/home" component={Home} />
 
-        </div>
-    </Router>
+            </div>
+        </Router>
+    </Provider>
 )
 ReactDOM.render(routing, document.getElementById('root'));
 
