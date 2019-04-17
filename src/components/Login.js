@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/login/index';
+import store from '../store';
 class Login extends Component {
 
     constructor(props) {
@@ -26,6 +27,7 @@ class Login extends Component {
             password: this.state.password
         }
         this.props.loginUser(userData);
+        this.props.increment(incrementActionCreator())
     }
 
     render() {
@@ -62,5 +64,14 @@ class Login extends Component {
 const mapStateToprops = (state) => ({
     userData: state.userData
 })
+
+const mapDispatchToProps = dispatch => {
+    return {
+      // dispatching plain actions
+      increment: action1 => dispatch({ type: 'INCREMENT', data: action1 }),
+      decrement: () => dispatch({ type: 'DECREMENT' }),
+      reset: () => dispatch({ type: 'RESET' })
+    }
+  }
 
 export default connect(mapStateToprops, { loginUser })(Login);

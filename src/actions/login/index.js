@@ -8,3 +8,12 @@ export const loginUser = (userData) => {
 }
 
 
+export const incrementActionCreator = (data) => {
+    console.log("In action", userData);
+    return {
+        type: USER_INCREMENT_ACTION,
+        payload: data
+    }
+}
+
+
